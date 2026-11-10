@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy - OFW Custody Calendar</title>
+  <meta name="description" content="What the OFW Custody Calendar Chrome extension reads, stores and sends. In short: everything stays on your device.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f2328;
+      --muted: #59636e;
+      --line: #d1d9e0;
+      --accent: #0b57d0;
+      --box: #f4f7fb;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #14181d;
+        --fg: #e6e9ed;
+        --muted: #9aa5b1;
+        --line: #343b44;
+        --accent: #8ab4f8;
+        --box: #1c2229;
+      }
+    }
+    html { background: var(--bg); }
+    body {
+      margin: 0;
+      padding: 24px 16px 64px;
+      background: var(--bg);
+      color: var(--fg);
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    main { max-width: 46rem; margin: 0 auto; }
+    h1 { font-size: 1.8rem; line-height: 1.25; margin: 0 0 4px; }
+    h2 { font-size: 1.2rem; margin: 2.2rem 0 0.4rem; padding-top: 0.4rem; border-top: 1px solid var(--line); }
+    p, ul { margin: 0.6rem 0; }
+    li { margin: 0.3rem 0; }
+    a { color: var(--accent); }
+    .meta { color: var(--muted); margin: 0 0 1.4rem; }
+    .summary { background: var(--box); border: 1px solid var(--line); border-radius: 8px; padding: 4px 18px 10px; }
+    .summary h2 { border: 0; margin-top: 0.8rem; }
+    table { border-collapse: collapse; width: 100%; margin: 0.8rem 0; font-size: 0.95rem; }
+    th, td { text-align: left; vertical-align: top; padding: 8px 10px; border: 1px solid var(--line); }
+    th { background: var(--box); }
+    code { font: 0.9em ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .table-wrap { overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="meta">OFW Custody Calendar, a Chrome extension. Last updated November 10, 2026.</p>
+
+    <section class="summary">
+      <h2>In short</h2>
+      <ul>
+        <li>The extension has <strong>no server</strong>. Everything it reads and stores stays on your computer, in your browser.</li>
+        <li>It talks to <strong>one website only: OurFamilyWizard</strong> (<code>ofw.ourfamilywizard.com</code>), and it only <strong>reads</strong> from it. It never changes anything in your OFW account.</li>
+        <li>It never sees, asks for or stores your <strong>password</strong>. It uses the sign-in you already have in your browser.</li>
+        <li>The OFW sign-in token is kept <strong>in memory only</strong> and disappears when you close Chrome.</li>
+        <li>No analytics, no tracking, no ads, no remote code, and your data is never sold or shared.</li>
+        <li>It does not read your Google Calendar events. It only looks at the layout of the page so it can draw colored backgrounds.</li>
+      </ul>
+    </section>
+
+    <h2>What this extension is</h2>
+    <p>OFW Custody Calendar shades the background of Google Calendar to show which parent has custody at each time, using the custody schedule from your OurFamilyWizard (OFW) account. It is an independent, unofficial tool. It is <strong>not made, endorsed or supported by OurFamilyWizard, LLC or by Google</strong>. "OurFamilyWizard," "OFW" and "Google Calendar" are used only to say what the extension works with.</p>
+
+    <h2>What the extension reads and stores</h2>
+    <p>All of the following is stored by Chrome on your device, in the extension's own storage. Nothing in the list is sent to the developer or to any third party.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>What</th><th>Why</th><th>Where it is kept</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Your OFW sign-in token (a temporary key OFW gives your browser when you sign in)</td>
+            <td>To ask OFW for your schedule on your behalf</td>
+            <td>Browser memory only (<code>chrome.storage.session</code>). Cleared when Chrome closes. Never written to the extension's saved data, logs, error messages or diagnostics.</td>
+          </tr>
+          <tr>
+            <td>Your custody schedule from OFW for the date range you choose: who has custody and when; the names, OFW user ids and colors of the parents; for anyone else in your OFW family (such as children or lawyers), only an OFW user id and their role, never their name; and your account's time zone</td>
+            <td>To draw the colors, show who has custody now, and tell you when the data was last checked</td>
+            <td>On your device (<code>chrome.storage.local</code>). Replaced each time the extension syncs; dates outside your chosen range are dropped.</td>
+          </tr>
+          <tr>
+            <td>Your settings: colors and names you pick, which parents to hide, opacity, labels, sync range and timing, and similar choices</td>
+            <td>To remember how you set it up</td>
+            <td>On your device (<code>chrome.storage.local</code>)</td>
+          </tr>
+          <tr>
+            <td>Sync status: when it last synced, whether that worked, a short list of recent sign-in renewal attempts (times and success or failure only), and the time zone Google Calendar reported</td>
+            <td>To show status in the popup and decide when to retry</td>
+            <td>On your device (<code>chrome.storage.local</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The extension never uses Chrome's <code>storage.sync</code>, so none of this is copied to your Google account or other devices by the extension.</p>
+
+    <h2>What the extension sends, and where</h2>
+    <ul>
+      <li><strong>Only to OFW.</strong> The extension's only network destination is <code>https://ofw.ourfamilywizard.com</code>.</li>
+      <li><strong>Read-only.</strong> It sends plain "read" (<code>GET</code>) requests to get your profile information, your calendar and a fresh sign-in token. An allow-list in the extension's code blocks any other kind of request and any other website.</li>
+      <li><strong>Your own session.</strong> The requests use the OFW sign-in your browser already holds, and they ask only for your own account's information.</li>
+      <li><strong>Nothing to the developer.</strong> There is no developer server, no analytics, no crash reporting and no telemetry.</li>
+    </ul>
+
+    <h2>Google Calendar</h2>
+    <p>The extension runs a small script on <code>calendar.google.com</code> so it can color the page. That script:</p>
+    <ul>
+      <li>reads the <strong>layout</strong> of the page (dates, hour labels, the time zone Calendar shows, and where things sit on screen), never the text or details of your events;</li>
+      <li>receives from the extension only what it needs to draw: the displayed parents' names and colors and the custody times for the dates on screen. It never receives your OFW token or the saved schedule as a whole;</li>
+      <li>makes no network requests of its own and sends nothing anywhere.</li>
+    </ul>
+
+    <h2>Permissions the extension asks for</h2>
+    <ul>
+      <li><strong>Storage:</strong> to keep the schedule, your settings and the in-memory token described above.</li>
+      <li><strong>Alarms:</strong> to run the sync on a timer. A background extension can be stopped by Chrome at any time, so a timer is needed.</li>
+      <li><strong>Access to <code>ofw.ourfamilywizard.com</code>:</strong> to read your schedule and to pick up your sign-in token.</li>
+      <li><strong>A script on <code>calendar.google.com</code>:</strong> to draw the colors. Chrome will warn that the extension can "read and change data" on that site because of this. It does not fetch anything from Google.</li>
+    </ul>
+    <p>It does not ask for access to your tabs, browsing history, cookies or any other website.</p>
+
+    <h2>Diagnostics (only if you choose)</h2>
+    <p>The popup has a "Copy diagnostics" button. It puts a plain-text report on your clipboard, only when you click it, so you can paste it into a support message if you want to. The report holds counts, settings, states and the extension's own error messages. It deliberately leaves out your token, all names, user ids, colors and handoff times. Nothing is sent anywhere unless you paste it somewhere yourself.</p>
+
+    <h2>Your account and OFW's terms</h2>
+    <p>The extension uses the sign-in you already have and reads only your own account's information. You remain responsible for your OFW account and for following OFW's own <a href="https://www.ourfamilywizard.com/legal/terms">Terms &amp; Conditions</a> and privacy policy, which apply to your use of OFW. OFW can change how its service works at any time, which may stop this extension from working. The token is a form of authentication, so treat it like a password: this extension keeps it in memory only and never shares it.</p>
+
+    <h2>How long data is kept and how to delete it</h2>
+    <ul>
+      <li>The sign-in token is gone when you close Chrome.</li>
+      <li>The saved schedule is replaced at every sync and covers only the date range you choose.</li>
+      <li><strong>To delete everything the extension has stored, uninstall it.</strong> Chrome removes the extension's storage when it is removed.</li>
+    </ul>
+
+    <h2>Limited use of data</h2>
+    <p>The information the extension reads is used only to provide its single purpose: shading Google Calendar by custody schedule and showing its status. It is not sold, not transferred to third parties, not used for advertising, and not used to judge creditworthiness or for lending. No person at any company reads your data, because it never leaves your device.</p>
+
+    <h2>Children</h2>
+    <p>The extension is not directed to children and does not collect information from children. Children and other non-parents in your OFW family are not needed to show custody, so the extension replaces their names with a placeholder such as "[redacted child]" as soon as it reads your family list. Their names are not saved, shown or sent anywhere. The family list OFW sends to your browser is held in memory only while a sync runs, and is not kept.</p>
+
+    <h2>Security</h2>
+    <p>The extension's saved data can be read only by the extension's own pages, not by the scripts it runs on OFW or Google Calendar, and Chrome's own protections apply. Your data is not encrypted by the extension itself beyond what your browser and operating system provide, so anyone who can use your signed-in computer account may be able to see what the extension has saved. No method of storage is perfectly secure.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If the extension's handling of data changes, this page will be updated and the date at the top changed before the new version is released. If a change affects what is collected or sent, the extension's store listing will say so.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy or the extension: <!-- TODO: replace with a real contact address before publishing --><strong><a href="mailto:mb.github.code@gmail.com">mb.github.code@gmail.com</a></strong>.</p>
+  </main>
+</body>
+</html>
